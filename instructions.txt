@@ -1,0 +1,33 @@
+The Task: Build a Lightning-Fast Landing Page
+🎯 Objective:
+Create a simple landing page for a fictional product or service. You can choose the theme
+(e.g., SaaS tool, digital agency, fitness app, etc.). The page should include:
+ 1. Hero Section
+• Headline, subheadline, and CTA button
+• Background image or gradient
+ 2. Feature Section
+• 3–4 features with icons or visuals
+ 3. Contact or Newsletter Signup
+• Name/email form or basic contact form
+ 4. Footer
+• Basic links or credits
+⸻
+✅ Requirements:
+• Built with React (CRA, Vite, or Next.js preferred)
+• Fully responsive
+• Use semantic HTML and modern CSS (Tailwind, SCSS, or CSS modules acceptable)
+• Must load in ~500ms or less (locally or deployed)
+• Should score 90+ (Grade A) on GTmetrix for performance, structure, and speed
+⸻
+🛠 Performance Tips (recommended but not required to explain):
+• Use lightweight assets (compressed images, SVGs)
+• Lazy-load non-critical content
+• Minimize JavaScript bundle size
+• Use Google Fonts efficiently (or system fonts)
+• Optimize image formats (WebP preferred)
+⸻
+🌐 Optional (Bonus):
+• Add a minimal Node.js API backend (e.g., /api/contact) to mock form submission
+• Deploy front-end (e.g., Vercel, Netlify) and back-end (e.g., Render, Railway, Glitch)
+• Use animations (GSAP, Framer Motion, or CSS) sparingly and only if they don’t hurt
+performance
