@@ -51,7 +51,7 @@ export default function Home() {
 function HeroSection() {
   return (
     <section className="section hero" id="about">
-      <div className="hero__intro animate-rise" style={{ animationDelay: "0.12s" }}>
+  <div className="hero__intro">
         <span className="hero__stamp">BrightSweep Cleaning Co.</span>
         <h1 className="hero__headline">Your home, hotel clean in under 90 minutes.</h1>
         <p className="hero__subhead">
@@ -68,14 +68,14 @@ function HeroSection() {
         </div>
         <ul className="hero__checklist">
           {checklist.map((item) => (
-            <li key={item} className="hero__checklist-item animate-rise" style={{ animationDelay: "0.22s" }}>
+            <li key={item} className="hero__checklist-item">
               <CheckIcon className="icon icon--mini" aria-hidden />
               {item}
             </li>
           ))}
         </ul>
       </div>
-      <div className="hero__media animate-rise" style={{ animationDelay: "0.25s" }}>
+      <div className="hero__media">
         <div className="hero__image-frame">
           <Image
             src="/cleaning.webp"
