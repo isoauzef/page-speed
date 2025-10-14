@@ -1,5 +1,4 @@
 import Image from "next/image";
-import type { SVGProps } from "react";
 
 type Feature = {
   title: string;
@@ -34,8 +33,6 @@ const features: Feature[] = [
     imageAlt: "Soap dispenser with cleaning supplies on an office counter"
   }
 ];
-
-const checklist = ["Homes & condos", "Move-in / move-out", "Office refreshes"];
 
 export default function Home() {
   return (
@@ -200,10 +197,3 @@ function Footer() {
   );
 }
 
-function CheckIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" strokeWidth="1.8" {...props}>
-      <path d="M16.5 6l-6.5 7-3.5-3.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
