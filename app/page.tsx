@@ -72,6 +72,7 @@ function HeroSection() {
             width={640}
             height={640}
             priority
+            fetchPriority="high"
             className="hero__image"
             sizes="(min-width: 960px) 32rem, (min-width: 640px) 24rem, 18rem"
           />
