@@ -60,20 +60,12 @@ function HeroSection() {
         </p>
         <div className="hero__cta">
           <a href="#contact" className="button button--primary">
-            Book a sparkle session
+            Book a session
           </a>
           <a href="#features" className="button button--secondary">
             View services
           </a>
         </div>
-        <ul className="hero__checklist">
-          {checklist.map((item) => (
-            <li key={item} className="hero__checklist-item">
-              <CheckIcon className="icon icon--mini" aria-hidden />
-              {item}
-            </li>
-          ))}
-        </ul>
       </div>
       <div className="hero__media">
         <div className="hero__image-frame">
