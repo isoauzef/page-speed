@@ -24,6 +24,48 @@ const pushToDataLayer = (payload: Record<string, unknown>) => {
   win.dataLayer.push(payload);
 };
 
+const persistDismissalTimestamp = (timestamp: number) => {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  try {
+    window.localStorage.setItem(STORAGE_KEY, timestamp.toString());
+  } catch {
+    // ignore storage write failures (private mode, quota, etc.)
+  }
+};
+
+const readDismissalTimestamp = (): number | null => {
+  if (typeof window === "undefined") {
+    return null;
+  }
+
+  try {
+    const fromStorage = window.localStorage.getItem(STORAGE_KEY);
+    if (fromStorage) {
+      const parsed = Number.parseInt(fromStorage, 10);
+      if (!Number.isNaN(parsed)) {
+        return parsed;
+      }
+    }
+  } catch {
+    // ignore storage read failures
+  }
+
+  return null;
+};
+
+const clearDismissalTimestamp = () => {
+  if (typeof window !== "undefined") {
+    try {
+      window.localStorage.removeItem(STORAGE_KEY);
+    } catch {
+      // ignore storage removal failures
+    }
+  }
+};
+
 
 export function FlashSaleBanner() {
   const [isVisible, setIsVisible] = useState(false);
@@ -65,14 +107,11 @@ export function FlashSaleBanner() {
       return;
     }
 
-    const storedDismissal = window.localStorage.getItem(STORAGE_KEY);
-    if (storedDismissal) {
-      const dismissedAt = Number.parseInt(storedDismissal, 10);
-      if (!Number.isNaN(dismissedAt) && now.getTime() - dismissedAt < HIDE_DURATION_MS) {
-        setIsVisible(false);
-        hasLoggedViewRef.current = false;
-        return;
-      }
+    const dismissedAt = readDismissalTimestamp();
+    if (dismissedAt && now.getTime() - dismissedAt < HIDE_DURATION_MS) {
+      setIsVisible(false);
+      hasLoggedViewRef.current = false;
+      return;
     }
 
     setIsVisible(true);
@@ -90,7 +129,7 @@ export function FlashSaleBanner() {
       const current = new Date();
       if (current >= endOfDay) {
         setIsVisible(false);
-        window.localStorage.removeItem(STORAGE_KEY);
+        clearDismissalTimestamp();
         clearTimer();
         return;
       }
@@ -135,9 +174,7 @@ export function FlashSaleBanner() {
   };
 
   const handleDismiss = () => {
-    if (typeof window !== "undefined") {
-      window.localStorage.setItem(STORAGE_KEY, Date.now().toString());
-    }
+    persistDismissalTimestamp(Date.now());
     setIsVisible(false);
   };
 
