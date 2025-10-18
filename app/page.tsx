@@ -1,4 +1,7 @@
+import { Suspense } from "react";
 import Image from "next/image";
+import { FlashSaleBanner } from "./components/FlashSaleBanner";
+import { CouponLink } from "./components/CouponLink";
 
 type Feature = {
   title: string;
@@ -36,12 +39,17 @@ const features: Feature[] = [
 
 export default function Home() {
   return (
-    <main className="landing">
-      <HeroSection />
-      <FeatureSection />
-      <ContactSection />
-      <Footer />
-    </main>
+    <>
+      <Suspense fallback={null}>
+        <FlashSaleBanner />
+      </Suspense>
+      <main className="landing">
+        <HeroSection />
+        <FeatureSection />
+        <ContactSection />
+        <Footer />
+      </main>
+    </>
   );
 }
 
@@ -56,12 +64,12 @@ function HeroSection() {
           space.
         </p>
         <div className="hero__cta">
-          <a href="#contact" className="button button--primary">
+          <CouponLink href="/book-session" className="button button--primary">
             Book a session
-          </a>
-          <a href="#features" className="button button--secondary">
+          </CouponLink>
+          <CouponLink href="/services" className="button button--secondary">
             View services
-          </a>
+          </CouponLink>
         </div>
       </div>
       <div className="hero__media">
@@ -189,8 +197,8 @@ function Footer() {
       <div className="footer__inner animate-rise" style={{ animationDelay: "0.15s" }}>
         <p>&copy; {new Date().getFullYear()} BrightSweep Cleaning Co. All rights reserved.</p>
         <nav className="footer__links">
-          <a href="#features">Services</a>
-          <a href="#contact">Get a quote</a>
+          <CouponLink href="/services">Services</CouponLink>
+          <CouponLink href="#contact">Get a quote</CouponLink>
           <a href="mailto:hello@brightsweep.co">Support</a>
         </nav>
       </div>
